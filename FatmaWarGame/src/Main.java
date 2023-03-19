@@ -12,7 +12,7 @@ public class Main {
 		ArrayList<String> mainDeck = createDeck();
         ArrayList<String> playerDeck = new ArrayList<String>();
         ArrayList<String> computerDeck = new ArrayList<String>();
-        
+        String Token = "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";
         // Deal the cards
         for (int i = 0; i < 27; i++) {
             playerDeck.add(mainDeck.remove(0));
