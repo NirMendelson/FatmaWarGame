@@ -26,7 +26,6 @@ public class Main {
         System.out.println("Welcome to Fatma War Game!");
         sc.nextLine();
         printNumOfCards(playerDeck, computerDeck);
-        playQuest(playerDeck, computerDeck);
 	}
 
 	public static ArrayList<String> createDeck() {
@@ -34,7 +33,7 @@ public class Main {
 //		String[] values = {"A","2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"};
 		
 		// for warMode debugging
-		String[] values = {"A","A", "A", "A", "A", "A", "A", "A", "A", "A", "A", "A", "A"};
+		String[] values = {"A","A", "Q", "4", "A", "A", "A", "K", "A", "A", "A", "A", "A"};
 
 		
 		// Add 4 cards of each value
@@ -66,7 +65,7 @@ public class Main {
 	
 	public static void compareCards(ArrayList<String> playerDeck, ArrayList<String> computerDeck, String playerCurCard, String compCurCard) {
 		// Compare the cards
-	    if (getCardValue(playerCurCard) > getCardValue(compCurCard)) {
+	    if (getCardValue(playerCurCard) < getCardValue(compCurCard)) {
 	        // Player wins, add both cards to the end of their deck
 	        playerDeck.add(playerCurCard);
 	        playerDeck.add(compCurCard);
@@ -74,7 +73,7 @@ public class Main {
 			computerDeck.remove(0);
 	        printNumOfCards(playerDeck, computerDeck);
 	        
-	    } else if (getCardValue(playerCurCard) < getCardValue(compCurCard)) {
+	    } else if (getCardValue(playerCurCard) > getCardValue(compCurCard)) {
 	        // Computer wins, add both cards to the end of their deck
 	        computerDeck.add(compCurCard);
 	        computerDeck.add(playerCurCard);
@@ -128,7 +127,39 @@ public class Main {
 		System.out.print("###");
 		System.out.println(playerWarList.get(4));
 		
-		compareCards(playerDeck, computerDeck, playerWarList.get(4), compWarList.get(4));
+		compareCardsWar(playerDeck, computerDeck, playerWarList.get(4), compWarList.get(4));
+	}
+			
+	
+	public static void compareCardsWar(ArrayList<String> playerDeck, ArrayList<String> computerDeck, String playerCurCard, String compCurCard) {
+		// Compare the cards
+	    if (getCardValue(playerCurCard) < getCardValue(compCurCard)) {
+	        // Player wins, add both cards to the end of their deck
+	        for (int i = 0; i < 5; i++) {
+	        	computerDeck.add(playerDeck.get(i));
+	        	computerDeck.add(computerDeck.get(i));
+	        }
+	        for (int i = 0; i < 5; i++) {
+		        playerDeck.remove(i);
+				computerDeck.remove(0);
+	        }
+	        printNumOfCards(playerDeck, computerDeck);  
+	    } 
+	    else if (getCardValue(playerCurCard) > getCardValue(compCurCard)) {
+	        // Computer wins, add both cards to the end of their deck
+	    	for (int i = 0; i < 5; i++) {
+	        	playerDeck.add(playerDeck.get(i));
+	        	playerDeck.add(computerDeck.get(i));
+	        }
+	    	for (int i = 0; i < 5; i++) {
+		        playerDeck.remove(i);
+				computerDeck.remove(0);
+	        }
+	        printNumOfCards(playerDeck, computerDeck);
+	        
+	    } else {
+	        warMode(playerDeck, computerDeck);
+	    }
 	}
 	
 	// A helper method to get the value of a card
@@ -140,10 +171,10 @@ public class Main {
 	        // It's not a number, so it must be a face card or a joker
 	        switch (card) {
 	            case "Jo":
-	                value = 14;
+	                value = 15;
 	                break;
 	            case "A":
-	                value = 1;
+	                value = 14;
 	                break;
 	            case "J":
 	                value = 11;
