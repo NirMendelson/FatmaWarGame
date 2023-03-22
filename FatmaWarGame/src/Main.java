@@ -8,6 +8,7 @@ public class Main {
 
 	static Scanner sc = new Scanner(System.in);
 	
+
 	public static void main(String[] args) {
 		ArrayList<String> mainDeck = createDeck();
         ArrayList<String> playerDeck = new ArrayList<String>();
