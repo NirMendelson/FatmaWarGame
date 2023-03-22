@@ -14,7 +14,7 @@ public class Main {
 		ArrayList<String> computerDeck = new ArrayList<String>();
 		String Token = "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";
 		int warRound = 1;
-		// Deal the cards
+		// Deal the card
 		for (int i = 0; i < 27; i++) {
 			playerDeck.add(mainDeck.remove(0));
 			computerDeck.add(mainDeck.remove(0));
