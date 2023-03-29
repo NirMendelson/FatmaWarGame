@@ -8,7 +8,6 @@ public class Main {
 	static Scanner sc = new Scanner(System.in);
 
 	public static void main(String[] args) {
-		// warRound have to be 0
 		int warRound = 0;
 		boolean gameOn = true;
 		outerLoop:
@@ -153,14 +152,20 @@ public class Main {
 		System.out.println("War!");
 		sc.nextLine();
 		System.out.print("AI ");
-		System.out.print(computerDeck.get(warRound));
-		System.out.print("###");
-		System.out.println(computerDeck.get(warRound+4));
+		System.out.print(computerDeck.get(0));
+		for (int i = 0; i<=(warRound/4); i++) {
+			System.out.print("###");
+			System.out.print(computerDeck.get(i*4+4));
+		}
+		System.out.println("");
 
 		System.out.print("Player ");
-		System.out.print(playerDeck.get(warRound));
-		System.out.print("###");
-		System.out.println(playerDeck.get(warRound+4));
+		System.out.print(playerDeck.get(0));
+		for (int i = 0; i<=(warRound/4); i++) {
+			System.out.print("###");
+			System.out.print(playerDeck.get(i*4+4));
+		}
+		System.out.println("");
 	}
 
 	
